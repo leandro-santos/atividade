@@ -1,7 +1,10 @@
 Producer::Application.routes.draw do
-  resources :comments
 
-  resources :posts
+  resources :categories
+
+  resources :posts do
+    resources :comments, :only => [:create]
+  end
 
   get "pages/index"
 

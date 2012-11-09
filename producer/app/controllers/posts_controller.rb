@@ -1,4 +1,7 @@
 class PostsController < ApplicationController
+
+  before_filter :load_resources, only: %w(new create edit update)
+
   # GET /posts
   # GET /posts.json
   def index
@@ -80,4 +83,12 @@ class PostsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  private
+
+  def load_resources
+    @author = User.all
+    @categories = Category.all
+  end
+
 end
