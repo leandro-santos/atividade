@@ -1,22 +1,19 @@
-    <div id="column1">
-      <h2><%= @post.title %></h2>
+<div id="column1">
+      <% if @posts.present? %>
 
-      <div id="post">
-        <%= @post.body %>
-      </div>
+        <% @posts.each do |post| %>
+          <h2><%= link_to post.title.titleize, post %></h2>
 
-      <hr/>
+          <div id="post">
+            <%= post.excerpt %>
 
-      <h3>Comments</h3>
+            <p><%= link_to "continue ...", post %></p>
+          </div>
+        <% end %>
 
-      <div id="comments">
-      <% if @post.comments.any? %>
-        <%= render @post.comments %>
       <% else %>
-        <p>Nobody commented this post yet.</p>
+        <p>We'll start posting soon.</p>
       <% end %>
-      </div>
-
-      <%= render "comments/form", post: @post, comment: Comment.new %>
-
     </div>
+
+    <%= render "sidebar" %>

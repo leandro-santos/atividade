@@ -25,7 +25,7 @@ class Admin::PostsController < Admin::BaseController
         @post = Post.new(params[:post])
 
         flash[:notice] = 'Post was successfully created.' if @post.save
-        respond_with @post, :location => admin_posts_path
+        respond_with @post, :location => edit_admin_posts_path(@post)
       end
 
       def update
